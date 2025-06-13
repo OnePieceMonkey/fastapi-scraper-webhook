@@ -54,7 +54,4 @@ Inhalt:
     return {"message": "OK – gescraped & an n8n gesendet", "title": title, "image": image_url}
 import os
 
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run("main:app", host="0.0.0.0", port=int(os.environ.get("PORT", 8000)))
 
