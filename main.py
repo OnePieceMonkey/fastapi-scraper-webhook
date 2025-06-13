@@ -61,13 +61,13 @@ def scrape_and_send(data: ScrapeRequest):
     img_tags = soup.find_all("img")
     images = []
     for img in img_tags:
-        src = img.get("src")
+        src = img.get("src") or img.get("data-src") or img.get("data-original")
         alt = img.get("alt", "").strip()
         if src:
             full_url = urljoin(url, src)
             images.append({
                 "url": full_url,
-                "description": alt or "kein Alt-Text"
+                "description": alt if alt else "kein Alt-Text"
             })
 
     category = classify_content(text)
@@ -75,6 +75,7 @@ def scrape_and_send(data: ScrapeRequest):
     payload = {
         "url": url,
         "title": title,
+        "description": description,
         "content": text,
         "category": category,
         "images": images
