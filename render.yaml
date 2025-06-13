@@ -3,7 +3,4 @@ services:
     name: fastapi-scraper
     runtime: python
     buildCommand: "pip install -r requirements.txt"
-    startCommand: "uvicorn main:app --host 0.0.0.0 --port 10000"
-    envVars:
-      - key: PORT
-        value: 10000
+    startCommand: "python main.py"
